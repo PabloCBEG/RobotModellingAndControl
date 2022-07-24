@@ -4,7 +4,7 @@
 % -------------------------------------------------
 % La ejecución de este archivo de MATLAB debe dar como resultado una matriz BTP con resultado que se pide
 
-function [T01,T12,T23,T34,T45,T56] = matricesTH
+function [TB0,T01,T12,T23,T34,T45,T56] = matricesTH
 % Definición de variables simbólicas (no cambiar)
 syms L0 L1 L1A L1B L2 L2A L2B L3 L3A L3B L4 L4A L4B L5 L5A L5B L6 L6A L6B real  
 syms q1 q2 q3 q4 q5 q6 real  
@@ -19,7 +19,11 @@ PI = sym(pi);
 % - Las matrices deben incluir los offsets correspondientes en la variables
 %   articulares, q1, q2, q3.
  
-
+% Matriz de transformación de sistema Base a 0
+TB0 = [ 1,       0,    0,    0           ;...
+        0,       1,    0,    0           ;...
+        0,       0,    1,    0           ;...
+        0,       0,    0,    1           ]; 
 % Matriz de transformación de sistema 0 a 1
 T01 = [ 1,       0,    0,    0           ;...
         0,       1,    0,    0           ;...

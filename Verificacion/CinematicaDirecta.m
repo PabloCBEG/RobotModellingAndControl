@@ -6,13 +6,15 @@
 % CUANDO RECIBE DE ENTRADA UN VECTOR TAMBIÉN NUMÉRICO CON LAS TRES COORDENADAS ARTICULARES
 % q1, q2 y q3
 
-function [xyz,or] = CinematicaDirecta(in)
+function [xyz,angEuler] = CinematicaDirecta(in)
   q1       = in(1);           % Posiciones articulares
   q2       = in(2);            
   q3       = in(3);
 
   % ------ SOLO DEBE ALTERAR LAS EXPRESIONES ENTRE ESTAS LÍNEAS ----------
   % SUSTITUYA los valores L0, L1, etc por sus valores numéricos  
+  L0 = 1; % Valor de ejemplo. Sustitúyalo por el que corresponda
+  
   
   % Posición del extremo de la articulación 3
   x = L0*sin(q1); % Ecuación de ejemplo. Cámbiela por su solución
@@ -25,7 +27,7 @@ function [xyz,or] = CinematicaDirecta(in)
   % ----------------------------------------------------------------------  
   % Variables de salida. No las modifique.
   xyz=[x;y;z];
-  or = [phi;theta;psi];
+  angEuler = [phi;theta;psi]; % Ángulos de Euler según convenio ZXZ
 end
 
 

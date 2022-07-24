@@ -15,6 +15,7 @@ z = in(3);           %
 
 % ------ SOLO DEBE ALTERAR LAS EXPRESIONES ENTRE ESTAS LÍNEAS ----------
 % SUSTITUYA los valores L0, L1, etc por sus valores numéricos
+L0 = 1; % Valor de ejemplo. Cámbielo según corresponde
 
 % Escriba a continuación las expresiones numéricas de su cinemática
 % inversa. Si hay varias soluciones posibles, expréselas como vectores para

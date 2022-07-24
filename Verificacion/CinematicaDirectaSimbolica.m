@@ -2,7 +2,7 @@
 % APARTADO A3 - Cinemática directa simbólica 
 % -------------------------------------------------
 
-function [xyz,or] = CinematicaDirectaSimbolica
+function [xyz] = CinematicaDirectaSimbolica
   
   % Emplee exclusivamente las siguientes variables simbólicas en sus expresiones
   syms x y z q1 q2 q3  real % variables articulares 
@@ -15,15 +15,10 @@ function [xyz,or] = CinematicaDirectaSimbolica
   x = L0*sin(q1); % Ecuación de ejemplo. Cámbiela por su solución
   y = L0*sin(q1); % Ecuación de ejemplo. Cámbiela por su solución
   z = L0*sin(q1); % Ecuación de ejemplo. Cámbiela por su solución
-  % Orientación (Ángulos de Euler) del marco de referencia 3
-  phi   = q1+sin(q2+PI/2); % Ecuación de ejemplo. Cámbiela por su solución
-  theta = q1+sin(q2+PI/2); % Ecuación de ejemplo. Cámbiela por su solución
-  psi   = q1+sin(q2+PI/2); % Ecuación de ejemplo. Cámbiela por su solución
   % ----------------------------------------------------------------------  
   % Variables de salida. No las modifique.
   xyz=[x;y;z];
-  or = [phi;theta;psi];
-end
+  end
 
 
 
