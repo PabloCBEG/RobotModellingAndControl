@@ -5,3 +5,6 @@
 2. MTLB projects
   - https://es.mathworks.com/help/simulink/slref/using-a-simulink-project.html#:~:text=Projects%20help%20you%20organize%20large,and%20interacting%20with%20source%20control.
 
+3. Git
+  - https://appuals.com/how-to-undo-the-init-command-on-git/
+  - https://www.earthdatascience.org/workshops/intro-version-control-git/basic-git-commands/
