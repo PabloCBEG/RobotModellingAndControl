@@ -17,11 +17,11 @@ PI = sym(pi);
 % Use la variable PI (en mayúsculas) para referirse a pi radianes
 
 %       theta_i  d_i   a_i   alpha_i
-TDH = [ PI/2,       L0,         0,          PI/2        ;...  % Link i=0
-        q1 + PI/2,  0,          0,          PI/2        ;...  % Link i=1
-        q2,         L1,         L2,         -PI/2       ;...  % Link i=2
-        PI/2,       L3A + q3,   -L3B,       -PI/2       ;...  % Link i=3
-        PI,         L4 + q4,    0,          PI/2        ;...  % Link i=4
-        0,          L5 + q5,    0,          PI/2        ;...  % Link i=5
-        q6,         L6,         0,          0           ];    % Link i=6        
+TDH = [ 0,       0,    0,    0           ;...  % Link i=0
+        0,       0,    0,    0           ;...  % Link i=1
+        0,       0,    0,    0           ;...  % Link i=2
+        0,       0,    0,    0           ;...  % Link i=3
+        0,       0,    0,    0           ;...  % Link i=4
+        0,       0,    0,    0           ;...  % Link i=5
+        0,       0,    0,    0           ];    % Link i=6        
 end
