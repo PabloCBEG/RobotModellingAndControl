@@ -28,10 +28,12 @@ function [xyz,angEuler] = CinematicaDirecta(in)
   y = L1*sin(q1) + L3B*sin(q1) - cos(q1)*sin(q2)*(L3A + q3) + L2*cos(q1)*cos(q2);
   z = cos(q2)*(L3A + q3) + L2*sin(q2);
   
+  
+  
   % Orientación (Ángulos de Euler) del marco de referencia 3
   phi   = q1;
   theta = pi - q2;
-  psi   = 0;
+  psi   = q1+sin(q2+pi/2); % Ecuación de ejemplo. Cámbiela por su solución
   % ----------------------------------------------------------------------  
   % Variables de salida. No las modifique.
   xyz=[x;y;z];
