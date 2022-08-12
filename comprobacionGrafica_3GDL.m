@@ -35,3 +35,6 @@ qr = [pi/2 pi/2 0 pi/2]; % postura dibujo
 %articulaciones para que el robot tenga la posición correcta
 
 proyecto.plot(qr,'jointdiam',1,'jaxes','joints');
+% Notar que al introducir la base, ese sistema de coordenadas, lo
+% interpreta como una articulación, en concreto de tipo prismático. Eso no
+% me gusta. Lo cambiaremos.

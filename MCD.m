@@ -46,5 +46,4 @@ rotmb = [nb, ob, ab];
 syms phi theta psi real;
 R = simplify(rotz(phi)*rotx(theta)*rotz(psi));
 
-%  Hay algo mal en el modelo cinematico. Parece que en la manera de definir
-%  los ángulos de euler.
+% Ahora la matriz que sale (incluyendo la base) es un taco de fea.

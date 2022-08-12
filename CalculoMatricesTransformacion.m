@@ -16,6 +16,8 @@ a34 = simplify(trotz(theta(5))*transl([0 0 d(5)])*transl([a(5) 0 0])*trotx(alpha
 a45 = simplify(trotz(theta(6))*transl([0 0 d(6)])*transl([a(6) 0 0])*trotx(alpha(6)));
 a56 = simplify(trotz(theta(7))*transl([0 0 d(7)])*transl([a(7) 0 0])*trotx(alpha(7)));
 
+% Esta matriz de transformación va desde el sistema coordenado 0, NO LA
+% BASE, hasta la garra. Para incluir la base, premultiplicar por ab0
 T06 = simplify(a01*a12*a23*a34*a45*a56);
 
 %------- PARA 3 GDL -------------------------------------------------------
@@ -27,12 +29,15 @@ d3     = [tabla3(1,2) tabla3(2,2) tabla3(3,2) tabla3(4,2)];
 a3     = [tabla3(1,3) tabla3(2,3) tabla3(3,3) tabla3(4,3)];
 alpha3 = [tabla3(1,4) tabla3(2,4) tabla3(3,4) tabla3(4,4)];
 
-ab0_3 = ab0;
+% ab0_3 = ab0;
+ab03 = simplify(trotz(theta3(1))*transl([0 0 d3(1)])*transl([a3(1) 0 0])*trotx(alpha3(1)));
 
-a01_3 = simplify(trotz(theta3(1))*transl([0 0 d3(1)])*transl([a3(1) 0 0])*trotx(alpha3(1)));
-a12_3 = simplify(trotz(theta3(2))*transl([0 0 d3(2)])*transl([a3(2) 0 0])*trotx(alpha3(2)));
-a23_3 = simplify(trotz(theta3(3))*transl([0 0 d3(3)])*transl([a3(3) 0 0])*trotx(alpha3(3)));
+a01_3 = simplify(trotz(theta3(2))*transl([0 0 d3(2)])*transl([a3(2) 0 0])*trotx(alpha3(2)));
+a12_3 = simplify(trotz(theta3(3))*transl([0 0 d3(3)])*transl([a3(3) 0 0])*trotx(alpha3(3)));
+a23_3 = simplify(trotz(theta3(4))*transl([0 0 d3(4)])*transl([a3(4) 0 0])*trotx(alpha3(4)));
 
+% Esta matriz de transformación va desde el sistema coordenado 0, NO LA
+% BASE, hasta la "garra". Para incluir la base, premultiplicar por ab0
 T03 = simplify(a01_3*a12_3*a23_3);
 
 T03b = simplify(ab0*a01_3*a12_3*a23_3);
