@@ -47,3 +47,7 @@ syms phi theta psi real;
 R = simplify(rotz(phi)*rotx(theta)*rotz(psi));
 
 % Ahora la matriz que sale (incluyendo la base) es un taco de fea.
+
+% Valores para comprobar la CD.
+anggg = [0, 0, 0]; % Significa q1...q3 = 0
+qus = [0.01, 0.01, 0.01];

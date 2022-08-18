@@ -24,9 +24,12 @@ function [xyz,angEuler] = CinematicaDirecta(in)
     L6 = 0.5;
   
   % Posición del extremo de la articulación 3
-  x = cos(q2)*(L3A + q3) + L2*sin(q2);
-  y = L1*cos(q1) + L3B*cos(q1) + sin(q1)*sin(q2)*(L3A + q3) - L2*cos(q2)*sin(q1);
-  z = L0 + L1*sin(q1) + L3B*sin(q1) - cos(q1)*sin(q2)*(L3A + q3) + L2*cos(q1)*cos(q2);
+%   x = cos(q2)*(L3A + q3) + L2*sin(q2);
+%   y = L1*cos(q1) + L3B*cos(q1) + sin(q1)*sin(q2)*(L3A + q3) - L2*cos(q2)*sin(q1);
+%   z = L0 + L1*sin(q1) + L3B*sin(q1) - cos(q1)*sin(q2)*(L3A + q3) + L2*cos(q1)*cos(q2);
+    x = L1*cos(q1) + L3B*cos(q1) - sin(q1)*sin(q2)*(L3A + q3) + L2*cos(q2)*sin(q1);
+    y = L2*cos(q1)*cos(q2) - L3B*sin(q1) - cos(q1)*sin(q2)*(L3A + q3) - L1*sin(q1);
+    z = cos(q2)*(L3A + q3) + L2*sin(q2);
   
   % Orientación (Ángulos de Euler) del marco de referencia 3
   phi   = pi/2;

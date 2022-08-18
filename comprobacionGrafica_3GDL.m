@@ -8,12 +8,24 @@ L3 = sqrt(L3A^2 + L3B^2);
 % L5 = 1.5;
 % L6 = 0.5;
 
+syms q1 q2 q3 real;
+
 clear L
-%             th        d       a       alpha
-L(1) = Link([ pi/2      L0      0       pi/2        0], 'standard');
-L(2) = Link([ pi/2      0       0       pi/2        0], 'standard', 'revolute');
-L(3) = Link([ 0         L1      L2      -pi/2       0], 'standard', 'revolute');
-L(4) = Link([ pi/2      L3A    	-L3B    0           0], 'standard', 'prismatic');
+%                    th        d       a       alpha
+% L(1) =      Link([ pi/2      L0      0       pi/2        0]);
+% L(2) =  Revolute([ pi/2      0       0       pi/2        0]);
+% L(3) =  Revolute([ 0         L1      L2      -pi/2       0]);
+% L(4) = Prismatic([ pi/2      L3A     -L3B    0           0]);
+% This ^^^ is how we used to work... not successfully
+% This vvv is how we're going to work from now on ("theta cannot be
+% specified for a revolute link)
+L(1) =      Link([ pi/2         L0          0           pi/2            0],'standard');
+L(2) =  Revolute(               'd',0,      'a',0,      'alpha',-pi/2);
+L(3) =  Revolute(               'd',L1,     'a',L2,     'alpha',-pi/2);
+L(4) = Prismatic('theta',pi/2,              'a',-L3B,   'alpha',0);
+
+% L(4).isprismatic;
+L(4).qlim = [0,3];
 % L(5) = Link([ pi        L4      0       pi/2        0], 'standard');
 % L(6) = Link([ 0         L5      0       pi/2        0], 'standard');
 % L(7) = Link([ 0         L6      0       0           0], 'standard');
@@ -27,14 +39,36 @@ L(4) = Link([ pi/2      L3A    	-L3B    0           0], 'standard', 'prismatic')
 %tener en cuenta la base cuando queremos coordenadas absolutas (era fácil
 %de intuir).
 
-proyecto = SerialLink(L, 'name', 'Manipulador proyecto','manufacturer','Dpto. Sistemas y Automática - ETSI - US');
+proyecto = SerialLink(L,'name','Manipulador proyecto','manufacturer','Dpto. Sistemas y Automática - ETSI - US');
 
 qz = [0 0 0 0]; % zero angles
 qr = [pi/2 pi/2 0 pi/2]; % postura dibujo
 %Extraño ahora es que deba introducir en qr los "offset" en las
 %articulaciones para que el robot tenga la posición correcta
+qm = [0 0 0 0;
+      pi/2 0 0 0;
+      pi/2 pi/2 0 0;
+      pi/2 pi/2 0 pi/2;
+      pi/2 pi   0 pi/2;
+      pi/2 pi/2 0 pi/2;
+      pi/2 pi   0 pi/2;
+      pi/2 pi/2 0 pi/2;
+      pi/2 pi   0 pi/2;
+      pi/2 pi/2 0 pi/2];
+  
+qx = [pi/2 0 0 pi/2;
+      pi/2 pi/2 pi/2    pi/2;
+      pi/2 pi/2 0       pi/2;
+      pi/2 pi/2 pi/2    pi/2;
+      pi/2 pi/2 0       pi/2;
+      pi/2 pi/2 pi/2    pi/2;
+      pi/2 pi/2 0       pi/2;
+      pi/2 pi/2 pi/2    pi/2;
+      pi/2 pi/2 0       pi/2;
+      pi/2 pi/2 pi/2    pi/2;
+      pi/2 pi/2 0       pi/2];
 
-proyecto.plot(qr,'jointdiam',1,'jaxes','joints');
+proyecto.plot(qx,'jointdiam',0.5,'jaxes','joints','delay',1.5,'base');
 % Notar que al introducir la base, ese sistema de coordenadas, lo
 % interpreta como una articulación, en concreto de tipo prismático. Eso no
 % me gusta. Lo cambiaremos.

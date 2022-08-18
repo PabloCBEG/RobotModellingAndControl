@@ -18,7 +18,7 @@ PI = sym(pi);
 
 %       theta_i  d_i   a_i   alpha_i
 TDH = [ PI/2,       L0,         0,          PI/2        ;...  % Link i=0
-        q1 + PI/2,  0,          0,          PI/2        ;...  % Link i=1
+        q1 + PI/2,  0,          0,          -PI/2        ;...  % Link i=1
         q2,         L1,         L2,         -PI/2       ;...  % Link i=2
-        PI/2,       L3A + q3,   -L3B,       0           ];    % Link i=3        
+        PI/2,       L3A + q3,   -L3B,       0           ];    % Link i=3   *****Cambiado L3A por -L3A     
 end
