@@ -19,6 +19,7 @@ a56 = simplify(trotz(theta(7))*transl([0 0 d(7)])*transl([a(7) 0 0])*trotx(alpha
 % Esta matriz de transformación va desde el sistema coordenado 0, NO LA
 % BASE, hasta la garra. Para incluir la base, premultiplicar por ab0
 T06 = simplify(a01*a12*a23*a34*a45*a56);
+T06b = simplify(ab0*a01*a12*a23*a34*a45*a56);
 
 %------- PARA 3 GDL -------------------------------------------------------
 

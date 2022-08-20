@@ -4,7 +4,7 @@
 
 % La ejecución de este archivo de MATLAB debe dar como resultado una matriz BTP con resultado que se pide
 
-function TDH = tablaDH_3gdl
+function TDH = tablaDH
 % Definición de variables simbólicas (no cambiar)
 syms L0 L1 L1A L1B L2 L2A L2B L3 L3A L3B L4 L4A L4B L5 L5A L5B L6 L6A L6B real  
 syms q1 q2 q3 q4 q5 q6 real  
@@ -20,5 +20,19 @@ PI = sym(pi);
 TDH = [ PI/2,       L0,         0,          PI/2        ;...  % Link i=0
         q1 + PI/2,  0,          0,          -PI/2       ;...  % Link i=1
         q2,         L1,         L2,         -PI/2       ;...  % Link i=2
-        PI/2,       L3A + q3,   -L3B,       0           ];    % Link i=3   *****Cambiado L3A por -L3A     
+        PI/2,       L3A + q3,   -L3B,       -PI/2       ;...  % Link i=3
+        PI,         L4 + q4,    0,          PI/2        ;...  % Link i=4
+        0,          L5 + q5,    0,          PI/2        ;...  % Link i=5
+        q6,         L6,         0,          0           ];    % Link i=6  
+    
+% La tabla precedente se ha rellenado teniendo en cuenta el sistema de la
+% base, y la transformación necesaria para pasar de ese sistema XB,YB,ZB al
+% sistema X0,Y0,Z0;
+% % Si no tenemos en cuenta la base, quedaría:
+% % TDH = [ q1 + PI/2,  0,          0,          -PI/2       ;...  % Link i=1
+% %         q2,         L1,         L2,         -PI/2       ;...  % Link i=2
+% %         PI/2,       L3A + q3,   -L3B,       -PI/2       ;...  % Link i=3
+% %         PI,         L4 + q4,    0,          PI/2        ;...  % Link i=4
+% %         0,          L5 + q5,    0,          PI/2        ;...  % Link i=5
+% %         q6,         L6,         0,          0           ];    % Link i=6
 end

@@ -11,7 +11,7 @@ L6 = 0.5;
 clear L
 %             th        d       a       alpha
 L(1) = Link([ pi/2      L0      0       pi/2        0], 'standard');
-L(2) = Link([ pi/2      0       0       pi/2        0], 'standard');
+L(2) = Link([ pi/2      0       0       -pi/2       0], 'standard');
 L(3) = Link([ 0         L1      L2      -pi/2       0], 'standard');
 L(4) = Link([ pi/2      L3A    	-L3B    -pi/2       0], 'standard');
 L(5) = Link([ pi        L4      0       pi/2        0], 'standard');
