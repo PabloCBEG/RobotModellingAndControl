@@ -8,7 +8,7 @@
 % EN CASO DE MÚLTIPLES SOLUCIONES, EL RESULTADO SERÁ UNA MATRIZ q, DE MODO
 % QUE CADA COLUMNA REPRESENTA UNA POSIBLE SOLUCIÓN.
 
-function q = CinematicaInversa(in)
+function q = Copy_of_CinematicaInversa(in)
 x = in(1);           % Posición cartesianas
 y = in(2);           % 
 z = in(3);           % 

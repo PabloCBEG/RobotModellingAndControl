@@ -20,10 +20,10 @@ L1 = 0.5;
 L2 = 1;
 L3A = 1;
 L3B = 0.5;
-% L3 = sqrt(L3A^2 + L3B^2);
+L3 = sqrt(L3A^2 + L3B^2);
 
 R = sqrt((L0 - z)^2 + y^2);
-% alpha = atan2(y, L0 - z);
+alpha = atan2(y, L0 - z);
 A = L1 + L3B;
 syms solucion real;
 
@@ -45,7 +45,7 @@ q2f = atan2(s2b,c2b);
 q2g = atan2(s2b,c2c);
 q2h = atan2(s2b,c2d);
 
-q2 = zeros(4096,1);
+q2 = zeros(4096);
 q2(1) = q2a; q2(2) = q2b; q2(3) = q2c; q2(4) = q2d;
 q2(5) = q2e; q2(6) = q2f; q2(7) = q2g; q2(8) = q2h;
 
@@ -57,10 +57,6 @@ q3e = (-x - L2*s2b)/c2a - L3A;
 q3f = (-x - L2*s2b)/c2b - L3A;
 q3g = (-x - L2*s2b)/c2c - L3A;
 q3h = (-x - L2*s2b)/c2d - L3A;
-
-q3 = zeros(4096,1);
-q3(1) = q3a; q3(2) = q3b; q3(3) = q3c; q3(4) = q3d;
-q3(5) = q3e; q3(6) = q3f; q3(7) = q3g; q3(8) = q3h;
 
 c1aa = (L3A + q3a + x*c2a + (y*s2a)/(z - L0)*(L3B + L1))/((L0 - z)*s2a - (y^2*s2a)/(z - L0));
 c1ab = (L3A + q3a + x*c2b + (y*s2a)/(z - L0)*(L3B + L1))/((L0 - z)*s2a - (y^2*s2a)/(z - L0));
@@ -142,23 +138,21 @@ c1 = [  c1aa,c1ab,c1ac,c1ad,c1ae,c1af,c1ag,c1ah,...
         c1fa,c1fb,c1fc,c1fd,c1fe,c1ff,c1fg,c1fh,...
         c1ga,c1gb,c1gc,c1gd,c1ge,c1gf,c1gg,c1gh,...
         c1ha,c1hb,c1hc,c1hd,c1he,c1hf,c1hg,c1hh];
-c1 = c1';
 
-s1 = zeros(64,1);    
+s1 = zeros(64);    
     
 for i = 1:64
-    s1(i) = (-L3B - L1 - y*c1(i))/(z - L0);
+    s1 = (-L3B - L1 - y*c1(i))/(z - L0);
 end
 
-q1 = zeros(4096,1);
+q1 = zeros(4096);
 
 for i = 1:64
     for j = 1:64
-        q1(i*j,1) = atan2(s1(i,1),c1(j));
+        q1(i*j) = atan2(s1(i),c1(j));
     end
 end
 
-q1 = q1'; q2 = q2'; q3 = q3';
 
 % Escriba a continuación las expresiones numéricas de su cinemática
 % inversa. Si hay varias soluciones posibles, expréselas como vectores para
