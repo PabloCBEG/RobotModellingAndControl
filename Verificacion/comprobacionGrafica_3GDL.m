@@ -18,7 +18,7 @@ clear L
 % L(4) = Prismatic([ pi/2      L3A     -L3B    0           0]);
 % This ^^^ is how we used to work... not successfully
 % This vvv is how we're going to work from now on ("theta cannot be
-% specified for a revolute link)
+% specified for a revolute link")
 L(1) =      Link([ pi/2         L0          0           pi/2            0],'standard');
 L(2) =  Revolute(               'd',0,      'a',0,      'alpha',-pi/2);
 L(3) =  Revolute(               'd',L1,     'a',L2,     'alpha',-pi/2);
@@ -67,8 +67,20 @@ qx = [pi/2 0 0 pi/2;
       pi/2 pi/2 0       pi/2;
       pi/2 pi/2 pi/2    pi/2;
       pi/2 pi/2 0       pi/2];
-
-proyecto.plot(qx,'jointdiam',0.5,'jaxes','joints','delay',1.5,'base');
+  
+qp = [pi/2 0    0       pi/2;
+      pi/2 pi/2 pi/2    pi/2;
+      pi/2 pi/2 0       pi/2;
+      pi/2 pi/4 0       pi/2;
+      pi/2 pi/4 pi/2    pi/2;
+      pi/2 pi/4 pi/2    pi/2-1];
+  
+qcomp = Trayectoria_circularXY();
+qcomp = qcomp';
+  
+proyecto.plot(qcomp,'jointdiam',0.5,'jaxes','joints','delay',1.5,'base');
 % Notar que al introducir la base, ese sistema de coordenadas, lo
 % interpreta como una articulación, en concreto de tipo prismático. Eso no
 % me gusta. Lo cambiaremos.
+
+% ku = proyecto.ikine_sym(3);

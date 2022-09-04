@@ -29,9 +29,6 @@ function [xyz,angEuler] = CinematicaDirecta(in)
     z = L0 - L1*sin(q1) - L3B*sin(q1) - cos(q1)*sin(q2)*(L3A + q3) + L2*cos(q1)*cos(q2);
   
   % Orientación (Ángulos de Euler) del marco de referencia 3
-%     phi     = q1;
-%     theta   = -q2;
-%     psi     = 0;
     theta   = atan2(sqrt(sin(q1)^2 + (-cos(q1)*cos(q2))^2),-cos(q1)*sin(q2));
         % Showint theta up there bc we need it for the other angles
         % computation
