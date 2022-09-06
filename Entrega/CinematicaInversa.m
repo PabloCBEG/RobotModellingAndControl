@@ -8,7 +8,7 @@
 % EN CASO DE MÚLTIPLES SOLUCIONES, EL RESULTADO SERÁ UNA MATRIZ q, DE MODO
 % QUE CADA COLUMNA REPRESENTA UNA POSIBLE SOLUCIÓN.
 
-function q = CinematicaInversa_mejor(in)
+function q = CinematicaInversa(in)
 x = in(1);           % Posición cartesianas
 y = in(2);           % 
 z = in(3);           % 
@@ -65,6 +65,9 @@ q3(4) = (-x - L2*sin(q2(4)))/cos(q2(4)) - L3A;
     for i=1:4
         if(q2(i) == 0)
             c1 = (-y + sqrt(y^2 - ((z - 1)^2 + y^2)*(1 - (z - 1)^2)))/((z - 1)^2 +y^2);%or -sqrt
+%           Aquí "estamos perdiendo una solución" por no usar también el
+%           signo negativo de la raíz, pero, en realidad, pienso que no
+%           tendríamos por qué calcular esta solución, en caso de que q2=0.
             if(abs(c1) > 1)
                 fprintf('Error en el calculo de cos(q1): solucion no valida en indice %i \n',i);
                 c1 = 0;
@@ -88,8 +91,5 @@ q3(4) = (-x - L2*sin(q2(4)))/cos(q2(4)) - L3A;
 % ----------------------------------------------------------------------  
 % Variables de salida. No las modifique.
 % q=[q1;q2;q3];
-q=[q1(3);q2(3);q3(3)];% Tomamos la tercera columna porque en las pruebas
-%                       realizadas ha proporcionado la solución correcta
-%                       (para la mayoría de valores; los restantes, se
-%                       resuelven correctamente en la columna 4 según parece)
+q=[q1;q2;q3];
 end

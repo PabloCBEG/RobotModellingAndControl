@@ -11,7 +11,7 @@
 % y = [-2*sqrt(0.5):0.01:2*sqrt(0.5)];
 % z = 2 + zeros(1,length(x));
 
-% function qc = Trayectoria_circularXY()
+function qc = Trayectoria_circularXY()
 
 % % Trayectoria con centro en [0,0,2]
 % r = 2*sqrt(0.5);
@@ -41,4 +41,4 @@ end
 
 qc = [pi/2 + zeros(1,length(x)); q];
 
-% end
+end

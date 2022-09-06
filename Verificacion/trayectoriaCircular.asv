@@ -28,8 +28,8 @@ function [x,y,z,q1,q2,q3] = trayectoriaCircular
   y = xyz(:,2);
   z = xyz(:,3);
   q1 = q(1,:);
-  q2 = q(2,:);
-  q3 = q(3,:);
+  q2 = q(1,:);
+  q3 = q(1,:);
   end
 
 
