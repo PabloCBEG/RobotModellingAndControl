@@ -22,14 +22,20 @@ function [x,y,z,q1,q2,q3] = trayectoriaCircular
   
   for i = 1:length(x)
       q(:,i) = CinematicaInversa_mejor([x(i),y(i),z(i)]);
+      % Añadir aquí un filtro para las singularidades (que simplemente
+      % imprima por pantalla un aviso de singularidad):
+      if q(1,i) = %valor que provoca singularidad de q1
+          fprintf('Singularidad en el manipulador provocada por q1 = %f');
   end
+  
+  q = q';
   
   x = xyz(:,1); % Cambiar estos valores por los que corresponda
   y = xyz(:,2);
   z = xyz(:,3);
-  q1 = q(1,:);
-  q2 = q(1,:);
-  q3 = q(1,:);
+  q1 = q(:,1);
+  q2 = q(:,2);
+  q3 = q(:,3);
   end
 
 
