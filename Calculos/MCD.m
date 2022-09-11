@@ -16,6 +16,11 @@ a23_3 = simplify(trotz(theta3(4))*transl([0 0 d3(4)])*transl([a3(4) 0 0])*trotx(
 T03 = simplify(a01_3*a12_3*a23_3);
 T03b = simplify(ab03*a01_3*a12_3*a23_3);
 
+rotmb0 = ab03(1:3,1:3);
+rotm01 = a01_3(1:3,1:3);
+rotm12 = a12_3(1:3,1:3);
+rotm23 = a23_3(1:3,1:3);
+
 n = T03(1:3,1); o = T03(1:3,2); a = T03(1:3,3); p = T03(1:3,4);
 nb = T03b(1:3,1); ob = T03b(1:3,2); ab = T03b(1:3,3); pb = T03b(1:3,4);
 

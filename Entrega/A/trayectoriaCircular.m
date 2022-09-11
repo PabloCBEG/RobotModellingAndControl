@@ -21,7 +21,7 @@ function [x,y,z,q1,q2,q3] = trayectoriaCircular
   xyz = xyz';
   
   for i = 1:length(x)
-      q(:,i) = CinematicaInversa([x(i),y(i),z(i)]);
+      q(:,i) = CinematicaInversa_paraTrayectorias([x(i),y(i),z(i)]);
       % Añadir aquí un filtro para las singularidades (que simplemente
       % imprima por pantalla un aviso de singularidad):
 %       if q(1,i) = %valor que provoca singularidad de q1

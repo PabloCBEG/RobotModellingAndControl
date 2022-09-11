@@ -36,7 +36,7 @@ y = -1.5 + r*sin(alfa);
 z = 2 + zeros(1,length(x));
 
 for i = 1:length(x)
-    q(:,i) = CinematicaInversa_mejor([x(i),y(i),z(i)]);
+    q(:,i) = CinematicaInversa_paraTrayectorias([x(i),y(i),z(i)]);
 end
 
 qc = [pi/2 + zeros(1,length(x)); q];

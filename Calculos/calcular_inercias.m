@@ -1,0 +1,95 @@
+% Cálculos para los tensores de inercia
+
+function tensores_inercia = calcular_inercias()
+
+% Eslabones cilíndricos huecos
+% data = struct(rext,0.1,rint,0.08,rho,5800,m0,65.5965,m1,32.7982,m2,65.5965,...
+%               m3,98.3947,L0,1,L1,0.5,L2,1,L3A,1,L3B,0.5);
+rext = 0.1; %m
+rint = 0.08;
+rho = 5800; % kg/m3
+m0 = 65.5965; % kg
+m1 = 32.7982;
+m2 = m0;
+m3 = 98.3947;
+L0 = 1;
+L1 = 0.5;
+L2 = 1;
+L3A = 1;
+L3B = 0.5;
+
+area = pi*(rext^2 - rint^2);
+rho_lineal = rho*area; % kg/m
+
+% Eslabón 0
+ixx0 = cruzada(m0,L0);
+iyy0 = directa(m0);
+izz0 = ixx0;
+i0 = [ixx0 0 0; 0 iyy0 0; 0 0 izz0];
+
+pcdm0 = [0; -L0/2; 0];
+
+% Eslabón 1
+ixx1 = cruzada(m1,L1);
+iyy1 = ixx1;
+izz1 = directa(m1);
+i1 = [ixx1 0 0; 0 iyy1 0; 0 0 izz1];
+
+pcdm1 = [0; 0; L1/2];
+
+% Eslabón 2
+ixx2 = directa(m2);
+iyy2 = cruzada(m2,L2);
+izz2 = iyy2;
+i2 = [ixx2 0 0; 0 iyy2 0; 0 0 izz2];
+
+pcdm2 = [-L2/2; 0; 0];
+
+% Eslabón 3
+% Es un eslabón compuesto por dos tramos. Aplicamos teorema de Steiner
+    % Inercia tramo A
+m3a = rho_lineal*L3A;
+iaxx3 = cruzada(m3a,L3A);
+iayy3 = iaxx3;
+iazz3 = directa(m3a);
+i3a = [iaxx3 0 0; 0 iayy3 0; 0 0 iazz3];
+    % Inercia tramo B
+m3b = rho_lineal*L3B;
+ibxx3 = directa(m3b);
+ibyy3 = cruzada(m3b,L3B);
+ibzz3 = ibyy3;
+i3b = [ibxx3 0 0; 0 ibyy3 0; 0 0 ibzz3];
+    % Inercia conjunta
+% m3 = m3a + m3b; % Masa de la barra completa
+pcdm3a = [L3B; 0; -L3A/2];  % Posición del cdm del tramo A respecto del
+                            % sistema de coordenadas de la barra 3
+pcdm3b = [L3B/2; 0; 0];     % Posición del cdm del tramo B respecto del
+                            % sistema de coordenadas de la barra 3
+pcdm3 = (m3a*pcdm3a + m3b*pcdm3b)/m3;   % Posición del cdm global
+cdm3aPcdm3 = pcdm3 - pcdm3a;    % Posición del cdm global respecto del de A
+cdm3bPcdm3 = pcdm3 - pcdm3b;    % Posición del cdm global respecto del de B
+r3ax = cdm3aPcdm3(1); r3ay = cdm3aPcdm3(2); r3az = cdm3aPcdm3(3);
+r3bx = cdm3bPcdm3(1); r3by = cdm3bPcdm3(2); r3bz = cdm3bPcdm3(3);
+i3acdm = i3a + m3a*[r3ay^2 + r3az^2     -r3ax*r3ay              -r3ax*r3az;
+                    -r3ax*r3ay          r3ax^2 + r3az^2         -r3ay*r3az;
+                    -r3ax*r3az          -r3ay*r3az         r3ax^2 + r3ay^2];
+                    % Tensor de inercia parcial del tramo A respecto del
+                    % cdm global
+i3bcdm = i3b + m3b*[r3by^2 + r3bz^2     -r3bx*r3by              -r3bx*r3bz;
+                    -r3bx*r3by          r3bx^2 + r3bz^2         -r3by*r3bz;
+                    -r3bx*r3bz          -r3by*r3bz         r3bx^2 + r3by^2];
+                    % Tensor de inercia parcial del tramo A respecto del
+                    % cdm global
+i3 = i3acdm + i3bcdm;
+
+tensores_inercia = [i1 i2 i3];
+
+function inercia_cruzada = cruzada(m,L)
+    inercia_cruzada = 1/4*m*(rext^2 + rint^2) + 1/12*m*L^2;
+end
+
+function inercia = directa(m)
+    inercia = 1/2*m*(rext^2 + rint^2);
+end
+
+end

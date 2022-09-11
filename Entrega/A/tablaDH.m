@@ -16,7 +16,7 @@ PI = sym(pi);
 % valores en radianes para los ángulos (por ejemplo PI/2).
 % Use la variable PI (en mayúsculas) para referirse a pi radianes
 
-%       theta_i  d_i   a_i   alpha_i
+%       theta_i     d_i         a_i         alpha_i
 TDH = [ PI/2,       L0,         0,          PI/2        ;...  % Link i=0
         q1 + PI/2,  0,          0,          -PI/2       ;...  % Link i=1
         q2,         L1,         L2,         -PI/2       ;...  % Link i=2
