@@ -1,0 +1,12 @@
+% Gráficas del control cinemático
+
+figure(1);
+set(gcf,'color','w');
+plot3(out.xr,out.yr,out.zr);grid;
+xlabel('x');ylabel('y');zlabel('z');
+
+figure(2);
+set(gcf,'color','w');
+subplot(1);
+plot3(out.xr,out.yr,out.zr);grid;
+xlabel('x');ylabel('y');zlabel('z');
